@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {EmpregService} from "../../service/empreg.service";
 
 @Component({
   selector: 'app-registeremployee',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisteremployeeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private empS:EmpregService) { }
 
+  private branches:any;
   ngOnInit() {
+    this.getAllBraches();
   }
+
+
+  registerEmp(empForm){
+    var emp = empForm.value;
+    emp["empID"] = emp["nic"];
+    console.log(emp);
+    this.empS.saveEmp(emp["empID"],emp).subscribe();
+
+  }
+
+  getAllBraches(){
+    this.empS.allBranches().subscribe(result=>{
+      this.branches = result;
+    })
+  }
+
 
 }
