@@ -1,0 +1,23 @@
+<html>
+
+
+<body>
+
+
+  <div class="form-signin" style="text-align: center">
+  <img class="mb-4" src="assets/royal.png" alt="" width="72" height="72">
+  <label for="useName" class="sr-only">User Name</label>
+  <input type="text" id="useName" class="form-control" placeholder="User Name" [(ngModel)]="userName" required autofocus >
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input type="password" id="inputPassword" class="form-control" placeholder="Password" required [(ngModel)]="password">
+  <div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" value="remember-me"> Remember me
+    </label>
+  </div>
+  <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="login()">Sign in</button>
+  <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
+  </div>
+
+</body>
+</html>
