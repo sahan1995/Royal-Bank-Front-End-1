@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {EmpregService} from "../../service/empreg.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-registeremployee',
@@ -8,27 +9,63 @@ import {EmpregService} from "../../service/empreg.service";
 })
 export class RegisteremployeeComponent implements OnInit {
 
-  constructor(private empS:EmpregService) { }
+  constructor(private empS: EmpregService, private route: Router) {
+  }
 
-  private branches:any;
+  @ViewChild(' btn') btn: ElementRef;
+  private branches: any;
+  private msg = "";
+
   ngOnInit() {
     this.getAllBraches();
+    // this.triggerFalseClick();
+
   }
 
 
-  registerEmp(empForm){
+  registerEmp(empForm) {
+
+
     var emp = empForm.value;
     emp["empID"] = emp["nic"];
     console.log(emp);
-    this.empS.saveEmp(emp["empID"],emp).subscribe();
+    this.empS.saveEmp(emp["empID"], emp).subscribe(result => {
+      this.msg = " Employee has been Successfully Registered !"
+      this.showMsg();
+
+    }, error1 => {
+      console.log(error1["status"])
+      this.empS.saveEmpServer2(emp["empID"], emp).subscribe(result => {
+        this.msg = " Employee has been Successfully Registered !"
+        this.showMsg();
+
+      }, error2 => {
+        this.msg = " Sorry Server Error";
+        this.showMsg();
+      });
+
+    });
+
 
   }
 
-  getAllBraches(){
-    this.empS.allBranches().subscribe(result=>{
+  getAllBraches() {
+    this.empS.allBranches().subscribe(result => {
       this.branches = result;
+    }, error1 => {
+      this.empS.allBranchesServer3().subscribe(result2 => {
+        this.branches = result2;
+      })
     })
   }
 
+  showMsg() {
+    let el: HTMLElement = document.getElementById("btn") as HTMLElement;
+    el.click();
+  }
+
+  close(){
+    this.route.navigate(["/admin"]);
+  }
 
 }

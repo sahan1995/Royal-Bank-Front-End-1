@@ -227,7 +227,17 @@
             <input type="text" class="form-control" id="salary" placeholder="75000.00"  name="salary" ngModel>
 
           </div>
+          <div class="col-md-4 mb-3">
+            <label for="userName">User Name</label>
+            <input type="text" class="form-control" id="userName" placeholder="User Name"  name="userName" ngModel>
 
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="*******"  name="password" ngModel>
+
+          </div>
         </div>
 
 
@@ -292,11 +302,34 @@
           <!--</div>-->
         <!--</div>-->
         <hr class="mb-4">
-        <button class="btn btn-primary btn-lg btn-block" type="submit" (click)="registerEmp(empForm)">Register Employee</button>
+        <button class="btn btn-primary btn-lg btn-block" type="submit" (click)="registerEmp(empForm)" >Register Employee</button>
+        <button id="btn" hidden #btn data-toggle="modal" data-target="#myModal"></button>
       </form>
     </div>
   </div>
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
 
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Royal Bank</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+         {{msg}}
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="close()">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
   <footer class="my-5 pt-5 text-muted text-center text-small">
     <p class="mb-1">&copy; 2017-2019 Royal Bank</p>
     <ul class="list-inline">

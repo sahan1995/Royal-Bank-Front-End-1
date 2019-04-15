@@ -1,0 +1,411 @@
+<body>
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Royal Bank</a>
+  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+  <!--{{fullname}}-->
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" href="" (click)="logout()">Sign out</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/dashboard">
+              <span data-feather="home"></span>
+              Dashboard <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file"></span>
+              Orders
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="shopping-cart"></span>
+              Products
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="users"></span>
+              Clients
+            </a>
+            <ul >
+              <li class="nav-item">
+                <a class="nav-link active" routerLink="/createAccount">
+                  <span data-feather="shopping-cart"></span>
+                  Create Bank Account
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="shopping-cart"></span>
+                  About Client
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="bar-chart-2"></span>
+              Reports
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="layers"></span>
+              Integrations
+            </a>
+          </li>
+        </ul>
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Saved reports</span>
+          <a class="d-flex align-items-center text-muted" href="#">
+            <span data-feather="plus-circle"></span>
+          </a>
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Current month
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Last quarter
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Social engagement
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Year-end sale
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h5 class="h5">Create Bank Account</h5>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group mr-2">
+            <h6>You logged as  Mr.<b>{{fullname}}</b></h6>
+            <!--<button type="button" class="btn btn-sm btn-outline-secondary">Share</button>-->
+            <!--<button type="button" class="btn btn-sm btn-outline-secondary">Export</button>-->
+          </div>
+          <!--<button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">-->
+          <!--<span data-feather="calendar"></span>-->
+          <!--This week-->
+          <!--</button>-->
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+
+          <div class="col-md-12 order-md-1">
+
+            <form  #accform="ngForm">
+              <h5><b>Personal Information</b></h5>
+              <hr class="mb-4">
+              <div class="row">
+
+                <div class="col-md-4 mb-3">
+                  <label for="fname">First name</label>
+                  <input type="text" class="form-control" id="fname" placeholder=""   name="fname" ngModel>
+                  <div class="invalid-feedback">
+                    Valid first name is required.
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="mname">Middle Name</label>
+                  <input type="text" class="form-control" id="mname" placeholder=""   name="mname" ngModel>
+                  <div class="invalid-feedback">
+                    Valid last name is required.
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="lname">Last name</label>
+                  <input type="text" class="form-control" id="lname" placeholder=""   name="lname" ngModel>
+                  <div class="invalid-feedback">
+                    Valid last name is required.
+                  </div>
+                </div>
+
+
+                <div class="col-md-4 mb-3">
+                  <label for="nic">NIC</label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">@</span>
+                    </div>
+                    <input type="text" class="form-control" id="nic" placeholder="NIC"  name="nic" ngModel>
+                    <div class="invalid-feedback" style="width: 100%;">
+                      Your username is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label for="email">Email <span class="text-muted"></span></label>
+                  <input type="email" class="form-control" id="email" placeholder="you@example.com" name="email" ngModel>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label for="dob">Date of Birth</label>
+                  <input type="date" class="form-control" id="dob" name="dob" ngModel>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label for="gender">Gender</label>
+                  <select class="custom-select d-block w-100" id="gender"  name="gender" ngModel>
+                    <option value="">Choose...</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                  </select>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label for="address">Address</label>
+                  <input type="text" class="form-control" id="address" placeholder="1234 Main St"  name="address" ngModel>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label for="city">City</label>
+                  <input type="text" class="form-control" id="city" placeholder="1234 Main St" required name="city" ngModel>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label for="occupation">Occupation</label>
+                  <input type="text" class="form-control" id="occupation" placeholder="Eg : Manager" required name="occupation" ngModel>
+
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="country">Country</label>
+                  <select class="custom-select d-block w-100" id="country"  name="country" ngModel>
+                    <option value="">Choose...</option>
+                    <option>United States</option>
+                  </select>
+                  <div class="invalid-feedback">
+                    Please select a valid country.
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="tel">Telephone</label>
+                  <input type="text" class="form-control" id="tel" placeholder="0713025089"  name="tel" ngModel>
+
+                </div>
+              </div>
+              <!--<div class="row">-->
+
+              <!--<div class="col-md-4 mb-3">-->
+              <!--<label for="state">State</label>-->
+              <!--<select class="custom-select d-block w-100" id="state" required>-->
+              <!--<option value="">Choose...</option>-->
+              <!--<option>California</option>-->
+              <!--</select>-->
+              <!--<div class="invalid-feedback">-->
+              <!--Please provide a valid state.-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--<div class="col-md-3 mb-3">-->
+              <!--<label for="zip">Zip</label>-->
+              <!--<input type="text" class="form-control" id="zip" placeholder="" required>-->
+              <!--<div class="invalid-feedback">-->
+              <!--Zip code required.-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--</div>-->
+              <br>
+              <h5><b>Account Information</b></h5>
+
+
+              <hr class="mb-4">
+              <div class="row">
+                <div class="col-md-4 mb-3">
+                  <label for="branchDTO">Branch</label>
+                  <select class="custom-select d-block w-100" id="branchDTO"  name="branchid" [(ngModel)]="branchID" (change)="getBranchDTO()">
+                    <option value="">Choose Brach</option>
+                    <option *ngFor="let branch of branches" [value]="branch.branchID">{{branch.branchName}}</option>
+
+                  </select>
+
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="accountnum">Account Number</label>
+                  <input type="text" class="form-control" id="accountnum" placeholder="ACC001"  name="accountNumber" ngModel>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label for="accountype">Account Type</label>
+                  <select class="custom-select d-block w-100" id="accountype"  name="accountType" ngModel>
+                    <option value="">Choose Type</option>
+                    <option>Savings Account</option>
+                    <option>Fixed Account</option>
+                    <option>Checking Accounts</option>
+
+                  </select>
+
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="salary">Deposit Amount</label>
+                  <input type="text" class="form-control" id="salary" placeholder="75000.00"  name="amount" ngModel>
+
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="userName">User Name</label>
+                  <input type="text" class="form-control" id="userName" placeholder="User Name"  name="userName" ngModel>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" id="password" placeholder="*******"  name="password" ngModel>
+
+                </div>
+
+                <div class="col-md-12 mb-3">
+                  <label >Create ATM Card</label>&nbsp;
+                  <input type="checkbox"   placeholder="*******"  name="zz" [(ngModel)]="isAtm" >
+
+                </div>
+
+
+                  <div class="col-md-6 mb-3" *ngIf="isAtm">
+                    <label for="pin">ATM Pin</label>
+                    <input type="password" class="form-control" id="pin" placeholder="****"  name="pin" ngModel>
+
+                  </div>
+
+
+              </div>
+
+
+
+              <!--<div class="custom-control custom-checkbox">-->
+              <!--<input type="checkbox" class="custom-control-input" id="same-address">-->
+              <!--<label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>-->
+              <!--</div>-->
+              <!--<div class="custom-control custom-checkbox">-->
+              <!--<input type="checkbox" class="custom-control-input" id="save-info">-->
+              <!--<label class="custom-control-label" for="save-info">Save this information for next time</label>-->
+              <!--</div>-->
+              <!--<hr class="mb-4">-->
+
+              <!--<h4 class="mb-3">Payment</h4>-->
+
+              <!--<div class="d-block my-3">-->
+              <!--<div class="custom-control custom-radio">-->
+              <!--<input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>-->
+              <!--<label class="custom-control-label" for="credit">Credit card</label>-->
+              <!--</div>-->
+              <!--<div class="custom-control custom-radio">-->
+              <!--<input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>-->
+              <!--<label class="custom-control-label" for="debit">Debit card</label>-->
+              <!--</div>-->
+              <!--<div class="custom-control custom-radio">-->
+              <!--<input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>-->
+              <!--<label class="custom-control-label" for="paypal">PayPal</label>-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--<div class="row">-->
+              <!--<div class="col-md-6 mb-3">-->
+              <!--<label for="cc-name">Name on card</label>-->
+              <!--<input type="text" class="form-control" id="cc-name" placeholder="" required>-->
+              <!--<small class="text-muted">Full name as displayed on card</small>-->
+              <!--<div class="invalid-feedback">-->
+              <!--Name on card is required-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--<div class="col-md-6 mb-3">-->
+              <!--<label for="cc-number">Credit card number</label>-->
+              <!--<input type="text" class="form-control" id="cc-number" placeholder="" required>-->
+              <!--<div class="invalid-feedback">-->
+              <!--Credit card number is required-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--<div class="row">-->
+              <!--<div class="col-md-3 mb-3">-->
+              <!--<label for="cc-expiration">Expiration</label>-->
+              <!--<input type="text" class="form-control" id="cc-expiration" placeholder="" required>-->
+              <!--<div class="invalid-feedback">-->
+              <!--Expiration date required-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--<div class="col-md-3 mb-3">-->
+              <!--<label for="cc-cvv">CVV</label>-->
+              <!--<input type="text" class="form-control" id="cc-cvv" placeholder="" required>-->
+              <!--<div class="invalid-feedback">-->
+              <!--Security code required-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--</div>-->
+              <hr class="mb-4">
+              <button class="btn btn-primary btn-lg btn-block" type="submit" (click)="registerEmp(accform.value)" >Create Account</button>
+              <button id="btn" hidden #btn data-toggle="modal" data-target="#myModal"></button>
+            </form>
+          </div>
+        </div>
+        <div class="modal fade" id="myModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Royal Bank</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                {{msg}}
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="close()">Close</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+          <p class="mb-1">&copy; 2017-2019 Royal Bank</p>
+          <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacy</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Support</a></li>
+          </ul>
+        </footer>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+
+
+</body>

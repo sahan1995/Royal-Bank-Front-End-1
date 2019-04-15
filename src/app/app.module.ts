@@ -8,6 +8,8 @@ import {FormsModule} from "@angular/forms";
 import { AdminComponent } from './admin/admin.component';
 import { RegisteremployeeComponent } from './registeremployee/registeremployee.component';
 import {HttpClientModule} from "@angular/common/http";
+import { EmphomeComponent } from './emphome/emphome.component';
+import { CreateaccountComponent } from './createaccount/createaccount.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import {HttpClientModule} from "@angular/common/http";
     routingComponents,
     LoginComponent,
     AdminComponent,
-    RegisteremployeeComponent
+    RegisteremployeeComponent,
+    EmphomeComponent,
+    CreateaccountComponent
   ],
   imports: [
     BrowserModule,
