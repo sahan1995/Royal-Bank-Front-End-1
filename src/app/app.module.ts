@@ -10,6 +10,8 @@ import { RegisteremployeeComponent } from './registeremployee/registeremployee.c
 import {HttpClientModule} from "@angular/common/http";
 import { EmphomeComponent } from './emphome/emphome.component';
 import { CreateaccountComponent } from './createaccount/createaccount.component';
+import { WithdrawComponent } from './withdraw/withdraw.component';
+import { SendmoneyComponent } from './sendmoney/sendmoney.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { CreateaccountComponent } from './createaccount/createaccount.component'
     AdminComponent,
     RegisteremployeeComponent,
     EmphomeComponent,
-    CreateaccountComponent
+    CreateaccountComponent,
+    WithdrawComponent,
+    SendmoneyComponent
   ],
   imports: [
     BrowserModule,

@@ -1,49 +1,54 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {DepositService} from "../../service/deposit.service";
+import {WithdrawService} from "../../service/withdraw.service";
 
 @Component({
-  selector: 'app-emphome',
-  templateUrl: './emphome.component.html',
-  styleUrls: ['./emphome.component.css']
+  selector: 'app-withdraw',
+  templateUrl: './withdraw.component.html',
+  styleUrls: ['./withdraw.component.css']
 })
-export class EmphomeComponent implements OnInit {
+export class WithdrawComponent implements OnInit {
+
+  private fullname;
 
   private fullname;
   private accno;
   private clientName;
   private accType;
-  private msg;
-  private dateAndTime;
-  private amount;
-  private depositerName;
-  private depositType;
   private bankAccountDTO;
-  constructor(private route:Router, private depositS:DepositService) { }
+  private msg;
+  private amount;
+  private accamount;
+  private nic;
+  private dateAndTime;
+  private widthdrawType;
+  private widthdrawerName;
+  constructor(private route:Router,private withdrawS:WithdrawService) { }
 
   ngOnInit() {
-    if(localStorage.getItem("fname")==null){
+    if (localStorage.getItem("fname") == null) {
       this.route.navigate([""])
     }
-    this.fullname = localStorage.getItem("fname")+" "+localStorage.getItem("lname");
-
+    this.fullname = localStorage.getItem("fname") + " " + localStorage.getItem("lname");
     let dateFormat = require('dateformat')
     this.dateAndTime = new Date();
     this.dateAndTime = dateFormat(this.dateAndTime,"dddd, mmmm dS, yyyy, h:MM:ss TT")
-    console.log(this.dateAndTime)
   }
   logout(){
     localStorage.clear();
     this.route.navigate([""]);
   }
 
-
   findByID(){
 
-    this.depositS.findAccountByID(this.accno).subscribe(result=>{
+    this.withdrawS.findAccountByID(this.accno).subscribe(result=>{
+
       this.bankAccountDTO = result;
       this.clientName = result["clientDTO"]["fname"]+" "+result["clientDTO"]["lname"];
+      this.nic = result["clientDTO"]["nic"];
       this.accType = result["accountType"];
+      this.accamount=result["amount"];
     },error1 => {
 
       if(error1["error"]=="Invalid Account Number "){
@@ -52,11 +57,13 @@ export class EmphomeComponent implements OnInit {
         return;
       }
 
-      this.depositS.findAccountByIDServer3(this.accno).subscribe(result=>{
-        console.log(result)
+      this.withdrawS.findAccountByIDServer3(this.accno).subscribe(result=>{
+
         this.bankAccountDTO = result;
         this.clientName = result["clientDTO"]["fname"]+" "+result["clientDTO"]["lname"];
+        this.nic = result["clientDTO"]["nic"];
         this.accType = result["accountType"];
+        this.accamount=result["amount"];
       },error2 => {
         this.msg = "Invalid Account Number ";
         this.showMsg();
@@ -74,28 +81,33 @@ export class EmphomeComponent implements OnInit {
     // this.route.navigate(["/admin"]);
   }
 
-  depositMoney(){
-    var depositDTO={
+  withdrawMoney(){
+    var withdrawDTO={
       dateAndTime: this.dateAndTime,
       amount: this.amount,
-      depositerName: this.depositerName,
-      depositType: "Bank Deposit",
+      widthdrawerName: this.widthdrawerName,
+      widthdrawType: "Bank Withdraw",
       bankAccountDTO: this.bankAccountDTO,
     }
-    console.log(depositDTO);
-    this.depositS.depositMoney(depositDTO).subscribe(result=>{
-      this.msg = "Money Successfully Deposit to the Acount !  "
+
+    console.log(withdrawDTO)
+
+    if(this.amount>this.accamount){
+      this.msg = "Insufficient Money";
+      this.showMsg();
+      return;
+    }
+    this.withdrawS.withdrawMoney(withdrawDTO).subscribe(result=>{
+      this.msg = "Money Successfully Withdraw from the Acount !  ";
       this.showMsg();
     },error1 => {
-
-      this.depositS.depositMoneyServer1(depositDTO).subscribe(result=>{
-        this.msg = "Money Successfully Deposit to the Acount !  "
+      this.withdrawS.withdrawMoneyServer3(withdrawDTO).subscribe(result=>{
+        this.msg = "Money Successfully Withdraw from the Acount !  ";
         this.showMsg();
       },error2 => {
-        this.msg = "Server Error ! "
+        this.msg = "Server Error";
         this.showMsg();
       })
     })
   }
-
 }
