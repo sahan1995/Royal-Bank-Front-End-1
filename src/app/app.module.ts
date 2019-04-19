@@ -12,6 +12,7 @@ import { EmphomeComponent } from './emphome/emphome.component';
 import { CreateaccountComponent } from './createaccount/createaccount.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { SendmoneyComponent } from './sendmoney/sendmoney.component';
+import { CreateBankAccountComponent } from './create-bank-account/create-bank-account.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { SendmoneyComponent } from './sendmoney/sendmoney.component';
     EmphomeComponent,
     CreateaccountComponent,
     WithdrawComponent,
-    SendmoneyComponent
+    SendmoneyComponent,
+    CreateBankAccountComponent
   ],
   imports: [
     BrowserModule,

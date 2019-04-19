@@ -1,0 +1,374 @@
+<body>
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Royal Bank</a>
+  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+  <!--{{fullname}}-->
+  <ul class="navbar-nav px-3">
+    <li class="nav-item text-nowrap">
+      <a class="nav-link" href="" (click)="logout()">Sign out</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/dashboard">
+              <span data-feather="home"></span>
+              Dashboard <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file"></span>
+              Orders
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="shopping-cart"></span>
+              Products
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="users"></span>
+              Clients
+            </a>
+            <ul>
+              <li class="nav-item">
+                <a class="nav-link " routerLink="/createAccount">
+                  <span data-feather="shopping-cart"></span>
+                  Create User Account and Bank Account
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" routerLink="/createBankAccount">
+                  <span data-feather="shopping-cart"></span>
+                  Create Bank Account Only
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="shopping-cart"></span>
+                  About Client
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="bar-chart-2"></span>
+              Reports
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="layers"></span>
+              Integrations
+            </a>
+          </li>
+        </ul>
+
+        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+          <span>Saved reports</span>
+          <a class="d-flex align-items-center text-muted" href="#">
+            <span data-feather="plus-circle"></span>
+          </a>
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Current month
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Last quarter
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Social engagement
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <span data-feather="file-text"></span>
+              Year-end sale
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+      <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h5 class="h5">Create Bank Account Only</h5>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group mr-2">
+            <h6>You logged as Mr.<b>{{fullname}}</b></h6>
+            <!--<button type="button" class="btn btn-sm btn-outline-secondary">Share</button>-->
+            <!--<button type="button" class="btn btn-sm btn-outline-secondary">Export</button>-->
+          </div>
+          <!--<button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">-->
+          <!--<span data-feather="calendar"></span>-->
+          <!--This week-->
+          <!--</button>-->
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+
+          <div class="col-md-12 order-md-1">
+
+            <form #accform="ngForm">
+              <h5><b>Personal Information</b></h5>
+              <hr class="mb-4">
+              <div class="row">
+
+                <div class="col-md-4 mb-3">
+                  <label for="userNIc">User NIC</label>
+                  <input type="text" class="form-control" id="userNIc" placeholder="" name="userNIC" [(ngModel)]="userNIC">
+                  <div class="invalid-feedback">
+                    Valid first name is required.
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="se"></label>
+                <button class="btn btn-primary" id="se" (click)="findClient()">Search</button>
+                </div>
+                <div class="col-md-4 mb-3">
+
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="fname">First name</label>
+                  <input type="text" class="form-control" id="fname" placeholder="" name="fname" [(ngModel)]="fname" disabled>
+                  <div class="invalid-feedback">
+                    Valid first name is required.
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="mname">Middle Name</label>
+                  <input type="text" class="form-control" id="mname" placeholder="" name="mname" [(ngModel)]="mname" disabled>
+                  <div class="invalid-feedback">
+                    Valid last name is required.
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="lname">Last name</label>
+                  <input type="text" class="form-control" id="lname" placeholder="" name="lname" [(ngModel)]="lname" disabled>
+                  <div class="invalid-feedback">
+                    Valid last name is required.
+                  </div>
+                </div>
+
+
+                <div class="col-md-4 mb-3">
+                  <label for="nic">NIC</label>
+                  <div class="input-group">
+
+                    <input type="text" class="form-control" id="nic"  name="nic" [(ngModel)]="nic" disabled>
+                    <div class="invalid-feedback" style="width: 100%;">
+                      Your username is required.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label for="email">Email <span class="text-muted"></span></label>
+                  <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email"
+                         disabled>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label for="dob">Date of Birth</label>
+                  <input class="form-control" id="dob" name="dob" [(ngModel)]="dob" disabled>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label for="gender">Gender</label>
+                  <input type="text" class="form-control" id="gender"  required
+                         name="gender" [(ngModel)]="gender" disabled>
+                </div>
+
+
+                <div class="col-md-4 mb-3">
+                  <label for="address">Address</label>
+                  <input type="text" class="form-control" id="address"  name="address" [(ngModel)]="address"
+                         disabled>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label for="city">City</label>
+                  <input type="text" class="form-control" id="city"  required name="city"
+                         [(ngModel)]="city" disabled>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label for="occupation">Occupation</label>
+                  <input type="text" class="form-control" id="occupation"  required
+                         name="occupation" [(ngModel)]="occupation" disabled>
+
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="country">Country</label>
+                  <input type="text" class="form-control" id="country"  required
+                         name="country" [(ngModel)]="country" disabled>
+                  <div class="invalid-feedback">
+                    Please select a valid country.
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="tel">Telephone</label>
+                  <input type="text" class="form-control" id="tel" name="tel" [(ngModel)]="tel" disabled>
+
+                </div>
+              </div>
+              <!--<div class="row">-->
+
+              <!--<div class="col-md-4 mb-3">-->
+              <!--<label for="state">State</label>-->
+              <!--<select class="custom-select d-block w-100" id="state" required>-->
+              <!--<option value="">Choose...</option>-->
+              <!--<option>California</option>-->
+              <!--</select>-->
+              <!--<div class="invalid-feedback">-->
+              <!--Please provide a valid state.-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--<div class="col-md-3 mb-3">-->
+              <!--<label for="zip">Zip</label>-->
+              <!--<input type="text" class="form-control" id="zip" placeholder="" required>-->
+              <!--<div class="invalid-feedback">-->
+              <!--Zip code required.-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--</div>-->
+              <br>
+              <h5><b>Account Information</b></h5>
+
+
+              <hr class="mb-4">
+              <div class="row">
+                <div class="col-md-4 mb-3">
+                  <label for="branchDTO">Branch</label>
+                  <select class="custom-select d-block w-100" id="branchDTO" name="branchid" [(ngModel)]="branchID"
+                          (change)="getBranchDTO()">
+                    <option value="">Choose Brach</option>
+                    <option *ngFor="let branch of branches" [value]="branch.branchID">{{branch.branchName}}</option>
+
+                  </select>
+
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="accountnum">Account Number</label>
+                  <input type="text" class="form-control" id="accountnum" placeholder="ACC001" name="accountNumber"
+                         ngModel>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label for="accountype">Account Type</label>
+                  <select class="custom-select d-block w-100" id="accountype" name="accountType" ngModel>
+                    <option value="">Choose Type</option>
+                    <option>Savings Account</option>
+                    <option>Fixed Account</option>
+                    <option>Checking Accounts</option>
+
+                  </select>
+
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="salary">Deposit Amount</label>
+                  <input type="text" class="form-control" id="salary" placeholder="75000.00" name="amount" ngModel>
+
+                </div>
+                <div class="col-md-4 mb-3">
+                  <label for="userName">User Name</label>
+                  <input type="text" class="form-control" id="userName" placeholder="User Name" name="userName" ngModel>
+
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" id="password" placeholder="*******" name="password"
+                         ngModel>
+
+                </div>
+
+                <div class="col-md-12 mb-3">
+                  <label>Create ATM Card</label>&nbsp;
+                  <input type="checkbox" placeholder="*******" name="zz" [(ngModel)]="isAtm">
+
+                </div>
+
+
+                <div class="col-md-6 mb-3" *ngIf="isAtm">
+                  <label for="pin">ATM Pin</label>
+                  <input type="password" class="form-control" id="pin" placeholder="****" name="pin" ngModel>
+
+                </div>
+
+
+              </div>
+
+
+              <hr class="mb-4">
+              <button class="btn btn-primary btn-lg btn-block" type="submit" (click)="createAccount(accform)">Create
+                Account
+              </button>
+              <button id="btn" hidden #btn data-toggle="modal" data-target="#myModal"></button>
+            </form>
+          </div>
+        </div>
+        <div class="modal fade" id="myModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title">Royal Bank</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                {{msg}}
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="close()">Close</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+          <p class="mb-1">&copy; 2017-2019 Royal Bank</p>
+          <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacy</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Support</a></li>
+          </ul>
+        </footer>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+
+</body>

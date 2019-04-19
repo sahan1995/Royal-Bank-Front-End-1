@@ -7,6 +7,7 @@ import {EmphomeComponent} from "./emphome/emphome.component";
 import {CreateaccountComponent} from "./createaccount/createaccount.component";
 import {WithdrawComponent} from "./withdraw/withdraw.component";
 import {SendmoneyComponent} from "./sendmoney/sendmoney.component";
+import {CreateBankAccountComponent} from "./create-bank-account/create-bank-account.component";
 
 const routes: Routes = [
   {path:'',redirectTo:'home',pathMatch:'full'},
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path:'dashboard',component:EmphomeComponent},
   {path:'createAccount',component:CreateaccountComponent},
   {path:'withdraw',component:WithdrawComponent},
-  {path:'sendmoney',component:SendmoneyComponent}
+  {path:'sendmoney',component:SendmoneyComponent},
+  {path:'createBankAccount',component:CreateBankAccountComponent}
 ];
 
 @NgModule({
@@ -24,4 +26,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [LoginComponent,AdminComponent,RegisteremployeeComponent,EmphomeComponent,CreateaccountComponent,WithdrawComponent,SendmoneyComponent];
+export const routingComponents = [LoginComponent,AdminComponent,RegisteremployeeComponent,EmphomeComponent,CreateaccountComponent,WithdrawComponent,SendmoneyComponent,CreateBankAccountComponent];

@@ -56,4 +56,12 @@ export class CreateaccountService {
   createATMCardserver3(atm){
     return this.http.post(this.url_3+"atmcards",atm);
   }
+
+  public findClient(NIC){
+    return this.http.get(this.url_1+"clients/"+NIC);
+  }
+
+  public createAccountOnly(accno,account){
+    return this.http.post(this.url_3+"/account/"+accno,account);
+  }
 }
