@@ -19,7 +19,6 @@ export class LoginComponent implements OnInit {
 
 
 
-
   login(){
     if(this.userName=="admin" && this.password=="admin"){
       this.route.navigate(["/admin"]);
@@ -40,36 +39,11 @@ export class LoginComponent implements OnInit {
         }else{
           this.route.navigate(["/dashboard"])
         }
-
       },error1 => {
 
-        if(error1["error"]=="User Name or Password Invalid !"){
-          this.msg=error1["error"];
+          this.msg="User Name or Password Invalid !";
           this.showMsg();
           return;
-        }
-
-        this.loginS.loginserver3(loginDTO).subscribe(result=>{
-          localStorage.setItem("fname",result["fname"])
-          localStorage.setItem("lname",result["lname"])
-          localStorage.setItem("id",result["id"])
-          localStorage.setItem("role",result["role"])
-          if(result["role"]=="client"){
-
-          }else{
-            this.route.navigate(["/dashboard"])
-          }
-        },error2 => {
-          console.log(error2)
-          if(error2["error"]["message"]=="User Name or Password Invalid !"){
-            this.msg=error2["error"]["message"];
-            this.showMsg();
-          return
-          }else {
-            // this.msg="Server Error";
-            // this.showMsg();
-          }
-        })
 
       })
 

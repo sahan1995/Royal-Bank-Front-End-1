@@ -45,7 +45,7 @@ export class SendmoneyComponent implements OnInit {
 
   findByID(accno){
 
-    this.sendmoneyS.findAccByID(accno).subscribe(result=>{
+    this.sendmoneyS.findAccountByID(accno).subscribe(result=>{
 
       this.bankAccountDTO = result;
       this.clientName = result["clientDTO"]["fname"]+" "+result["clientDTO"]["lname"];
@@ -59,25 +59,12 @@ export class SendmoneyComponent implements OnInit {
         this.showMsg();
         return;
       }
-
-      this.sendmoneyS.findAccByIDServer3(accno).subscribe(result=>{
-
-        this.bankAccountDTO = result;
-        this.clientName = result["clientDTO"]["fname"]+" "+result["clientDTO"]["lname"];
-        this.nic = result["clientDTO"]["nic"];
-        this.accType = result["accountType"];
-        this.accamount=result["amount"];
-      },error2 => {
-        this.msg = "Invalid Account Number ";
-        this.showMsg();
-      })
-      // console.log("ssss")
     })
 
   }
   findByIDRes(accno){
 
-    this.sendmoneyS.findAccByID(accno).subscribe(result=>{
+    this.sendmoneyS.findAccountByID(accno).subscribe(result=>{
 
       this.resclientName = result["clientDTO"]["fname"]+" "+result["clientDTO"]["lname"];
       this.resnic = result["clientDTO"]["nic"];
@@ -90,21 +77,9 @@ export class SendmoneyComponent implements OnInit {
         this.showMsg();
         return;
       }
-
-      this.sendmoneyS.findAccByIDServer3(accno).subscribe(result=>{
-
-        this.resclientName = result["clientDTO"]["fname"]+" "+result["clientDTO"]["lname"];
-        this.resnic = result["clientDTO"]["nic"];
-        this.resaccType = result["accountType"];
-      },error2 => {
-        this.msg = "Invalid Account Number ";
-        this.showMsg();
-      })
-      // console.log("ssss")
     })
 
   }
-
   sendMoney(){
 
     var sendMoneyDTO={
@@ -114,20 +89,9 @@ export class SendmoneyComponent implements OnInit {
       bankAccountDTO :this.bankAccountDTO,
     }
 
-    console.log(sendMoneyDTO)
-
-
     this.sendmoneyS.sendMoney(sendMoneyDTO).subscribe(result=>{
       this.msg = "Transaction Successfully ";
       this.showMsg();
-    },error1 => {
-      this.sendmoneyS.sendMoneyserver3(sendMoneyDTO).subscribe(result=>{
-        this.msg = "Transaction Successfully ";
-        this.showMsg();
-      },error2 => {
-        this.msg = "Server Error ";
-        this.showMsg();
-      })
     })
   }
 

@@ -51,17 +51,6 @@ export class EmphomeComponent implements OnInit {
         this.showMsg();
         return;
       }
-
-      this.depositS.findAccountByIDServer3(this.accno).subscribe(result=>{
-        console.log(result)
-        this.bankAccountDTO = result;
-        this.clientName = result["clientDTO"]["fname"]+" "+result["clientDTO"]["lname"];
-        this.accType = result["accountType"];
-      },error2 => {
-        this.msg = "Invalid Account Number ";
-        this.showMsg();
-      })
-      // console.log("ssss")
     })
 
   }
@@ -86,16 +75,11 @@ export class EmphomeComponent implements OnInit {
     this.depositS.depositMoney(depositDTO).subscribe(result=>{
       this.msg = "Money Successfully Deposit to the Acount !  "
       this.showMsg();
-    },error1 => {
-
-      this.depositS.depositMoneyServer1(depositDTO).subscribe(result=>{
-        this.msg = "Money Successfully Deposit to the Acount !  "
-        this.showMsg();
-      },error2 => {
+    },error2 => {
         this.msg = "Server Error ! "
         this.showMsg();
       })
-    })
+
   }
 
 }

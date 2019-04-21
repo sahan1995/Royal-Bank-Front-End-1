@@ -32,18 +32,6 @@ export class RegisteremployeeComponent implements OnInit {
     this.empS.saveEmp(emp["empID"], emp).subscribe(result => {
       this.msg = " Employee has been Successfully Registered !"
       this.showMsg();
-
-    }, error1 => {
-      console.log(error1["status"])
-      this.empS.saveEmpServer2(emp["empID"], emp).subscribe(result => {
-        this.msg = " Employee has been Successfully Registered !"
-        this.showMsg();
-
-      }, error2 => {
-        this.msg = " Sorry Server Error";
-        this.showMsg();
-      });
-
     });
 
 
@@ -52,10 +40,6 @@ export class RegisteremployeeComponent implements OnInit {
   getAllBraches() {
     this.empS.allBranches().subscribe(result => {
       this.branches = result;
-    }, error1 => {
-      this.empS.allBranchesServer3().subscribe(result2 => {
-        this.branches = result2;
-      })
     })
   }
 

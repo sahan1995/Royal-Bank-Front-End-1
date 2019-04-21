@@ -14,42 +14,14 @@ export class EmpregService {
   private url_2="http://192.168.1.101:8082/api/v1/";
   private url_3="http://192.168.1.101:8083/api/v1/";
 
+  private url = "http://192.168.1.101:8085/api/v1/"
   constructor(private http:HttpClient) { }
 
   allBranches(){
-    return this.http.get(this.url_1+"/branches");
+    return this.http.get(this.url+"/branches");
   }
-
   saveEmp(empID,emp){
 
-    return this.http.post(this.url_1+"employees/"+empID,emp)
-  }
-
-  saveEmpServer2(empID,emp){
-    return this.http.post(this.url_2+"employees/"+empID,emp)
-}
-
-
-  allBranchesServer3(){
-    return this.http.get(this.url_3+"/branches");
-  }
-
-
-  test(){
-    return this.http.get(this.url_2+"deposits");
-  }
-  handleError(error) {
-
-    // return this.http.get(this.url_2+"/deposits");
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      // client-side error
-      errorMessage = `Error: ${error.error.message}`;
-    } else {
-      // server-side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    alert(errorMessage);
-    return throwError(errorMessage);
+    return this.http.post(this.url+"employees/"+empID,emp)
   }
 }

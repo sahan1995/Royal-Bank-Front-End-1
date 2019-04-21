@@ -27,6 +27,8 @@ export class CreateBankAccountComponent implements OnInit {
   private empDTO;
   private dateAndTime;
   private branches;
+  private branchID;
+  private msg = "";
   constructor(private route: Router,private createAccS:CreateaccountService) {
   }
 
@@ -82,34 +84,32 @@ export class CreateBankAccountComponent implements OnInit {
     }
 
     this.createAccS.createAccountOnly(accForm["accountNumber"],accountDTO).subscribe(result=>{
-
-    })
-
+      this.msg = "Bank Account Created Successfully ! "
+      this.showMsg();
+    });
     }
 
   getEmpDTO(){
     this.createAccS.getEmpByid(localStorage.getItem("id")).subscribe(result=>{
       this.empDTO = result;
-    },error1 => {
-      this.createAccS.getEmpByidserver2(localStorage.getItem("id")).subscribe(result=>{
-        this.empDTO = result;
-      })
-    })
+    });
   }
 
 
   getAllBranches(){
-    this.createAccS.getAllBranches().subscribe(result=>{
+    this.createAccS.getBranches().subscribe(result=>{
       this.branches = result;
-    },error1 => {
-      this.createAccS.getAllBranchesserver3().subscribe(result=>{
-        this.branches = result;
-      })
-    });
-
+    })
   }
 
+  showMsg() {
+    let el: HTMLElement = document.getElementById("btn") as HTMLElement;
+    el.click();
+  }
 
+  close(){
+    this.route.navigate(["/dashboard"]);
+  }
 
 
 

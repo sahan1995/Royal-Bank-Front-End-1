@@ -50,25 +50,11 @@ export class WithdrawComponent implements OnInit {
       this.accType = result["accountType"];
       this.accamount=result["amount"];
     },error1 => {
-
       if(error1["error"]=="Invalid Account Number "){
         this.msg = error1["error"];
         this.showMsg();
         return;
       }
-
-      this.withdrawS.findAccountByIDServer3(this.accno).subscribe(result=>{
-
-        this.bankAccountDTO = result;
-        this.clientName = result["clientDTO"]["fname"]+" "+result["clientDTO"]["lname"];
-        this.nic = result["clientDTO"]["nic"];
-        this.accType = result["accountType"];
-        this.accamount=result["amount"];
-      },error2 => {
-        this.msg = "Invalid Account Number ";
-        this.showMsg();
-      })
-      // console.log("ssss")
     })
 
   }
@@ -100,14 +86,10 @@ export class WithdrawComponent implements OnInit {
     this.withdrawS.withdrawMoney(withdrawDTO).subscribe(result=>{
       this.msg = "Money Successfully Withdraw from the Acount !  ";
       this.showMsg();
-    },error1 => {
-      this.withdrawS.withdrawMoneyServer3(withdrawDTO).subscribe(result=>{
-        this.msg = "Money Successfully Withdraw from the Acount !  ";
-        this.showMsg();
-      },error2 => {
+    },error2 => {
         this.msg = "Server Error";
         this.showMsg();
       })
-    })
+
   }
 }

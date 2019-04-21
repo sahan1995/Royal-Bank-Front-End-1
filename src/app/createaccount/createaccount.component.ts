@@ -89,7 +89,6 @@ export class CreateaccountComponent implements OnInit {
 
     }
 
-
     this.createAccS.createAccount(accountDTO).subscribe(result=>{
       this.msg = "Bank Account Created Successfully ! "
       this.showMsg();
@@ -105,74 +104,32 @@ export class CreateaccountComponent implements OnInit {
             employeeDTO: this.empDTO
           }
         }
-
         this.createAccS.createATMCard(atmDTO).subscribe();
         this.msg = "Bank Account Created Successfully ! "
 
       }
-    },error1 => {
-      this.createAccS.createAccountserve2(accountDTO).subscribe(result=>{
-        this.msg = "Bank Account Created Successfully ! "
-        this.showMsg();
-
-        if(this.isAtm){
-          var atmDTO={
-            code:accForm["nic"],
-            pin: accForm["pin"],
-            bankAccountDTO:{
-              accountNumber: accForm["accountNumber"],
-              amount: accForm["amount"],
-              createdAt: "today",
-              accountType: accForm["accountType"],
-              employeeDTO: this.empDTO
-            }
-          }
-
-          this.createAccS.createATMCardserver3(atmDTO).subscribe();
-          this.msg = "Bank Account Created Successfully ! "
-
-        }
-      },error2 => {
-        this.msg = "Server Error ! "
-        this.showMsg();
-      })
     });
 
 
   }
 
   getAllBranches(){
-  this.createAccS.getAllBranches().subscribe(result=>{
-    this.branches = result;
-  },error1 => {
-    this.createAccS.getAllBranchesserver3().subscribe(result=>{
+    this.createAccS.getBranches().subscribe(result=>{
       this.branches = result;
-    })
-  });
-
+    });
   }
 
   getEmpDTO(){
     this.createAccS.getEmpByid(localStorage.getItem("id")).subscribe(result=>{
       this.empDTO = result;
-    },error1 => {
-      this.createAccS.getEmpByidserver2(localStorage.getItem("id")).subscribe(result=>{
-        this.empDTO = result;
-      })
-    })
+    });
   }
 
   getBranchDTO(){
 
     this.createAccS.getBranchByID(this.branchID).subscribe(result=>{
-
       this.branchDTO = result;
-    },error1 => {
-      this.createAccS.getBranchByIDserver3(this.branchID).subscribe(result=>{
-
-        this.branchDTO = result;
-      })
-    })
+    });
   }
 
   showMsg() {
